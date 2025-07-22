@@ -2,115 +2,150 @@
 
 A powerful AI-driven web application that allows users to query e-commerce data using natural language. The system converts natural language questions into SQL queries, executes them against a database, and provides beautiful visualizations of the results.
 
-## Features
+<img width="2816" height="1536" alt="Gemini_Generated_Image_58fu3i58fu3i58fu" src="https://github.com/user-attachments/assets/1d0df92d-0342-4310-a07a-e45c4d4c37ef" />
 
-- **Natural Language Processing**: Ask questions in plain English about your e-commerce data
-- **AI-Powered SQL Generation**: Automatically converts questions to SQL queries using LLM (with fallback patterns)
-- **Beautiful Web Interface**: Modern, responsive React frontend with intuitive design
-- **Data Visualization**: Automatic chart generation for query results
-- **Real-time Streaming**: Live typing effect for responses
-- **Multiple Data Sources**: Supports ad sales, total sales, and product eligibility data
-- **RESTful API**: Clean API endpoints for integration
 
-## Architecture
+> **📌 Tip**: Want to see it in action? Check out the live demo GIF below!
 
-- **Frontend**: React with Tailwind CSS and shadcn/ui components
-- **Backend**: Flask API with CORS support
-- **Database**: SQLite with e-commerce data
-- **AI Integration**: Ollama for LLM (with intelligent fallback system)
-- **Visualization**: Matplotlib for chart generation
+![Demo GIF](./frontend/public/demo.gif)
 
-## Quick Start
+---
+
+## ✨ Features
+
+* **🧠 Natural Language Processing**: Ask questions in plain English about your e-commerce data
+* **🪄 AI-Powered SQL Generation**: Automatically converts questions to SQL queries using LLM (with fallback patterns)
+* **🌈 Beautiful Web Interface**: Modern, responsive React frontend with Tailwind and shadcn/ui
+* **📊 Data Visualization**: Auto-generates visual insights from query results
+* **💬 Real-time Streaming**: Typing animation for LLM responses
+* **📂 Multiple Data Sources**: Ad sales, total sales, eligibility data supported
+* **🔗 RESTful API**: Clean endpoints for integration into other systems
+
+---
+
+## 🏗️ Architecture
+
+* **Frontend**: React (Vite) + Tailwind CSS + shadcn/ui
+* **Backend**: Flask REST API with CORS support
+* **Database**: SQLite with preloaded data
+* **AI Integration**: Local LLM via Ollama (fallback logic included)
+* **Visualization**: Matplotlib/Seaborn for charts
+
+```mermaid
+### 🧠 System Architecture
+
+graph TD
+    subgraph Frontend [🌐 Frontend (React/Vite)]
+        A1[User Interface]
+        A2[Search & Chat UI]
+        A1 --> A2
+    end
+
+    subgraph Backend [🛠️ Backend (Python Flask API)]
+        B1[API Layer (api.py)]
+        B2[LLM Interface (llm_interface.py)]
+        B3[Database Layer (database.py)]
+        B4[SQLite DB (ecommerce.db)]
+        B1 --> B2
+        B1 --> B3
+        B3 --> B4
+    end
+
+    subgraph AI Engine [🤖 LLM Engine]
+        C1[Ollama (local LLM runtime)]
+        C2[Model: llama2 or phi3:mini]
+        C1 --> C2
+    end
+
+    subgraph Deployment [🚀 Deployment]
+        D1[Netlify (Frontend)]
+        D2[Render/VM (Backend & Ollama)]
+    end
+
+    A2 -->|API Calls| B1
+    B2 -->|Prompt + Context| C1
+    C1 -->|LLM Response| B2
+    B1 -->|Returns JSON| A2
+
+    A1 -->|Static Assets| D1
+    B1 -->|API Host| D2
+```
+
+---
+
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- Python 3.8 or higher
-- Node.js 16 or higher
-- npm or pnpm
+* Python 3.8+
+* Node.js 16+
+* `npm` or `pnpm`
 
-### Installation
+### Installation Steps
 
-1. **Extract the project files**
-   ```bash
-   # Extract the zip file to your desired location
-   cd ai_ecommerce_agent
-   ```
+```bash
+# 1. Extract the zip file
+cd ai_ecommerce_agent
 
-2. **Set up the backend**
-   ```bash
-   # Install Python dependencies
-   pip install flask flask-cors pandas matplotlib seaborn
-   
-   # Optional: Install Ollama for enhanced AI capabilities
-   # Download from https://ollama.com/download
-   # ollama pull llama2
-   ```
+# 2. Backend setup
+pip install flask flask-cors pandas matplotlib seaborn
 
-3. **Set up the database**
-   ```bash
-   python database.py
-   ```
+# Optional: Install Ollama for LLM
+# https://ollama.com/download
+# ollama pull llama2
 
-4. **Set up the frontend**
-   ```bash
-   cd frontend
-   npm install
-   # or if you have pnpm: pnpm install
-   ```
+# 3. Set up the database
+python database.py
 
-### Running the Application
+# 4. Frontend setup
+cd frontend
+npm install  # or: pnpm install
+```
 
-1. **Start the backend API**
-   ```bash
-   # From the root directory (ai_ecommerce_agent)
-   python api.py
-   ```
-   The API will be available at `http://localhost:5000`
+### Running the App
 
-2. **Start the frontend (in a new terminal)**
-   ```bash
-   cd frontend
-   npm run dev
-   # or: pnpm run dev
-   ```
-   The web application will be available at `http://localhost:5173`
+```bash
+# 1. Backend
+cd ../  # Root directory
+python api.py
+# API will be at http://localhost:5000
 
-3. **Open your browser**
-   Navigate to `http://localhost:5173` to use the application
+# 2. Frontend (in new terminal)
+cd frontend
+npm run dev
+# Frontend will be at http://localhost:5173
+```
 
-## Usage
+---
+
+## 🌐 Usage
 
 ### Web Interface
 
-1. **Query Interface Tab**
-   - Enter your question in natural language
-   - Click "Query Data" for basic results
-   - Click "Query + Visualize" to include charts
-   - Click "Stream Response" for real-time typing effect
+* **Query Interface**: Ask questions, visualize answers, get live responses
+* **Example Queries**: One-click examples and schema info
 
-2. **Example Queries Tab**
-   - Pre-built sample questions
-   - Click any example to run it instantly
-   - View database schema information
+### Example Natural Language Queries
 
-### Example Questions
+* "What is the total sales?"
+* "Calculate the RoAS (Return on Ad Spend)"
+* "Which product had the highest CPC?"
+* "Show me products not eligible for advertising"
+* "Top 10 products by impressions"
 
-- "What is the total sales?"
-- "Calculate the RoAS (Return on Ad Spend)"
-- "Which product had the highest CPC?"
-- "Show me products that are not eligible for advertising"
-- "What are the top 10 products by impressions?"
-- "Which products have the highest ad spend?"
+---
 
-### API Endpoints
+## 📡 API Endpoints
 
-- `GET /` - API information
-- `GET /health` - Health check
-- `POST /query` - Submit natural language questions
-- `POST /stream_query` - Submit questions with streaming response
-- `GET /schema` - Get database schema
+| Endpoint        | Method | Description                     |
+| --------------- | ------ | ------------------------------- |
+| `/`             | GET    | API home                        |
+| `/health`       | GET    | Health check                    |
+| `/query`        | POST   | Submit a natural language query |
+| `/stream_query` | POST   | Real-time typing stream query   |
+| `/schema`       | GET    | Get DB schema                   |
 
-#### Example API Usage
+### Example cURL
 
 ```bash
 curl -X POST -H "Content-Type: application/json" \
@@ -118,96 +153,74 @@ curl -X POST -H "Content-Type: application/json" \
   http://localhost:5000/query
 ```
 
-## Data Schema
+---
 
-The application works with three main data tables:
+## 🧾 Data Schema
 
 ### Ad Sales Table
-- `date`: Date of the record
-- `item_id`: Product identifier
-- `ad_sales`: Revenue from advertising
-- `impressions`: Number of ad impressions
-- `ad_spend`: Amount spent on advertising
-- `clicks`: Number of ad clicks
-- `units_sold`: Units sold through ads
+
+* `date`, `item_id`, `ad_sales`, `impressions`, `ad_spend`, `clicks`, `units_sold`
 
 ### Total Sales Table
-- `date`: Date of the record
-- `item_id`: Product identifier
-- `total_sales`: Total revenue
-- `total_units_ordered`: Total units ordered
+
+* `date`, `item_id`, `total_sales`, `total_units_ordered`
 
 ### Eligibility Table
-- `eligibility_datetime_utc`: Timestamp
-- `item_id`: Product identifier
-- `eligibility`: Eligibility status (TRUE/FALSE)
-- `message`: Eligibility message/reason
 
-## Troubleshooting
+* `eligibility_datetime_utc`, `item_id`, `eligibility`, `message`
 
-### Common Issues
+---
 
-1. **"Module not found" errors**
-   - Ensure all Python dependencies are installed: `pip install -r requirements.txt`
+## 🛠️ Troubleshooting
 
-2. **Database not found**
-   - Run `python database.py` to create and populate the database
+| Issue               | Fix                                          |
+| ------------------- | -------------------------------------------- |
+| Module not found    | `pip install -r requirements.txt`            |
+| DB not found        | Run `python database.py`                     |
+| API not connecting  | Ensure Flask is running at `:5000` with CORS |
+| Frontend crashes    | `rm -rf node_modules && npm install`         |
+| Ollama memory issue | Use fallback mode (see terminal logs)        |
 
-3. **API connection errors**
-   - Ensure the backend is running on port 5000
-   - Check that CORS is enabled in the Flask app
+---
 
-4. **Frontend build errors**
-   - Delete `node_modules` and run `npm install` again
-   - Ensure Node.js version is 16 or higher
-
-5. **Ollama not working**
-   - The application has built-in fallback patterns
-   - Install Ollama for enhanced AI capabilities (optional)
-
-### Performance Tips
-
-- For better AI responses, install and configure Ollama with a suitable model
-- The fallback system handles common e-commerce queries without Ollama
-- Use the visualization feature for better data insights
-
-## Development
-
-### Project Structure
+## 📁 Project Structure
 
 ```
 ai_ecommerce_agent/
 ├── data/                          # CSV data files
-├── frontend/                      # React application
-│   ├── src/
-│   │   ├── components/           # UI components
-│   │   ├── App.jsx              # Main application
-│   │   └── App.css              # Styles
-│   └── package.json             # Frontend dependencies
-├── database.py                   # Database setup
-├── llm_interface.py             # AI/LLM integration
-├── api.py                       # Flask API server
-├── requirements.txt             # Python dependencies
-└── README.md                    # This file
+├── frontend/                      # React UI
+│   ├── src/components/            # UI Components
+│   ├── App.jsx                    # Main App
+│   └── App.css                    # Styling
+├── database.py                   # DB init
+├── llm_interface.py              # AI logic
+├── api.py                        # Flask API
+├── requirements.txt              # Python deps
+├── README.md                     # You're here ✨
 ```
 
-### Adding New Features
+---
 
-1. **New Query Patterns**: Add to `llm_interface.py` fallback patterns
-2. **UI Components**: Use shadcn/ui components in the React frontend
-3. **API Endpoints**: Add new routes in `api.py`
-4. **Data Sources**: Modify `database.py` to include new CSV files
+## 🔧 Dev Guide
 
-## License
+* Add new fallback prompts → `llm_interface.py`
+* Add API routes → `api.py`
+* Add UI components → `frontend/src/components`
+* Add new data → `database.py` and `data/`
 
-This project is provided as-is for educational and demonstration purposes.
+---
 
-## Support
+## 📄 License
 
-For issues or questions:
-1. Check the troubleshooting section
-2. Verify all dependencies are installed
-3. Ensure both backend and frontend are running
-4. Check browser console for frontend errors
-5. Check terminal output for backend errors
+This project is open-source and available for educational/demo purposes.
+
+---
+
+## 🤝 Support & Contributions
+
+* Star the repo ⭐ if it helped you!
+* PRs welcome for new features or bugfixes 🙌
+* For issues, open GitHub Issues or reach out!
+
+---
 
