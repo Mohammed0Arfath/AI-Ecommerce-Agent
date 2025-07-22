@@ -7,7 +7,7 @@ A powerful AI-driven web application that allows users to query e-commerce data 
 
 > **📌 Tip**: Want to see it in action? Check out the live demo GIF below!
 
-![Demo GIF](./frontend/public/demo.gif)
+![Demo GIF](./Third video - Made with Clipchamp.gif)
 
 ---
 
