@@ -31,7 +31,6 @@ A powerful AI-driven web application that allows users to query e-commerce data 
 * **AI Integration**: Local LLM via Ollama (fallback logic included)
 * **Visualization**: Matplotlib/Seaborn for charts
 
-```mermaid
 ### 🧠 System Architecture
 <img width="3840" height="2558" alt="Architecture_AI_Agent_Ecommerce" src="https://github.com/user-attachments/assets/fe2fdf7c-cc01-4868-95ef-c39b3f971b5f" />
 
