@@ -7,7 +7,7 @@ A powerful AI-driven web application that allows users to query e-commerce data 
 
 > **📌 Tip**: Want to see it in action? Check out the live demo GIF below!
 
-![Demo GIF](./Third-video---Made-with-Clipchamp.gif)
+(./Third-video - Made with Clipchamp.gif)
 
 ---
 
@@ -33,43 +33,7 @@ A powerful AI-driven web application that allows users to query e-commerce data 
 
 ```mermaid
 ### 🧠 System Architecture
-
-graph TD
-    subgraph Frontend [🌐 Frontend (React/Vite)]
-        A1[User Interface]
-        A2[Search & Chat UI]
-        A1 --> A2
-    end
-
-    subgraph Backend [🛠️ Backend (Python Flask API)]
-        B1[API Layer (api.py)]
-        B2[LLM Interface (llm_interface.py)]
-        B3[Database Layer (database.py)]
-        B4[SQLite DB (ecommerce.db)]
-        B1 --> B2
-        B1 --> B3
-        B3 --> B4
-    end
-
-    subgraph AI Engine [🤖 LLM Engine]
-        C1[Ollama (local LLM runtime)]
-        C2[Model: llama2 or phi3:mini]
-        C1 --> C2
-    end
-
-    subgraph Deployment [🚀 Deployment]
-        D1[Netlify (Frontend)]
-        D2[Render/VM (Backend & Ollama)]
-    end
-
-    A2 -->|API Calls| B1
-    B2 -->|Prompt + Context| C1
-    C1 -->|LLM Response| B2
-    B1 -->|Returns JSON| A2
-
-    A1 -->|Static Assets| D1
-    B1 -->|API Host| D2
-```
+<img width="3840" height="2558" alt="Architecture_AI_Agent_Ecommerce" src="https://github.com/user-attachments/assets/fe2fdf7c-cc01-4868-95ef-c39b3f971b5f" />
 
 ---
 
